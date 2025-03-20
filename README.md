@@ -29,8 +29,54 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Docker
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can build and run the application using Docker:
+
+```bash
+# Build the Docker image
+npm run docker:build
+
+# Run the Docker container
+npm run docker:run
+
+# Or use Docker Compose
+npm run docker:compose
+```
+
+### Google Cloud Run
+
+This project is configured for deployment to Google Cloud Run:
+
+```bash
+# Deploy to Google Cloud Run
+npm run deploy
+```
+
+For detailed setup instructions, see the documentation in the `docs` directory.
+
+### CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+1. When a pull request is opened against the `main` branch, the workflow will:
+   - Build the application
+   - Run linting and tests
+
+2. When changes are pushed to the `main` branch, the workflow will:
+   - Build the application
+   - Run linting and tests
+   - Build and push a Docker image to GitHub Container Registry
+   - Deploy the application to Google Cloud Run
+
+#### Required Secrets
+
+To enable the CI/CD pipeline, add the following secrets to your GitHub repository:
+
+- `GCP_WORKLOAD_IDENTITY_PROVIDER`: The Workload Identity Provider for Google Cloud authentication
+- `GCP_SERVICE_ACCOUNT`: The service account email for Google Cloud authentication
+- `DATABASE_URL`: The connection string for your database
+
+For setting up Workload Identity Federation, follow the [Google Cloud documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
