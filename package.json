@@ -9,7 +9,11 @@
     "lint": "next lint",
     "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "docker:build": "docker build -t tictactoe .",
+    "docker:run": "docker run -p 3000:3000 tictactoe",
+    "docker:compose": "docker-compose up",
+    "deploy": "sh ./deploy.sh"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
