@@ -1,0 +1,30 @@
+# Exclude development and unnecessary files
+node_modules
+.git
+.github
+.next
+.vscode
+*.md
+!README.md
+.env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.pem
+
+# Exclude test files
+__tests__
+*.test.js
+*.spec.js
+
+# Exclude local DB files
+*.db
+*.sqlite
+*.sqlite3
+
+# Keep prisma schema and migrations
+!prisma/schema.prisma
+!prisma/migrations
