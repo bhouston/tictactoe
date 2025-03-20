@@ -29,8 +29,31 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## CI/CD and Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project uses GitHub Actions for CI/CD to automatically build, test, and deploy the application to Google Cloud Run.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### CI/CD Workflow
+
+The CI/CD pipeline performs the following steps:
+1. Builds and tests the Next.js application
+2. Builds a Docker image
+3. Pushes the Docker image to GitHub Container Registry (GHCR)
+4. Deploys the image to Google Cloud Run
+
+### Required Secrets
+
+To set up the CI/CD pipeline, you need to configure the following secrets in your GitHub repository:
+
+- `GCP_WORKLOAD_IDENTITY_PROVIDER`: The Workload Identity Provider for Google Cloud authentication
+- `GCP_SERVICE_ACCOUNT`: The service account email for Google Cloud authentication
+- `DATABASE_URL`: The connection string for your database
+
+### Setting Up Google Cloud for Deployment
+
+1. Create a Google Cloud project
+2. Set up Workload Identity Federation for GitHub Actions
+3. Create a service account with the necessary permissions (Cloud Run Admin, Storage Admin)
+4. Configure the Workload Identity Provider
+
+For more details on setting up Workload Identity Federation with GitHub Actions, see the [Google Cloud documentation](https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions).
